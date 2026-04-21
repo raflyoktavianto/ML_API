@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediksi Tagihan Medis</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 50px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 400px; }
+        h2 { color: #1a73e8; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #1557b0; }
+        #result { margin-top: 20px; padding: 15px; border-radius: 5px; display: none; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Estimasi Billing</h2>
+    <form id="predictionForm">
+        <div class="form-group">
+            <label>Umur (Age)</label>
+            <input type="number" name="Age" placeholder="Contoh: 25" required>
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <select name="Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Golongan Darah</label>
+            <select name="Blood Type">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Kondisi Medis</label>
+            <select name="Medical Condition">
+                <option value="Diabetes">Diabetes</option>
+                <option value="Hypertension">Hypertension</option>
+                <option value="Asthma">Asthma</option>
+                <option value="Arthritis">Arthritis</option>
+                <option value="Cancer">Cancer</option>
+            </select>
+        </div>
+        <button type="submit">Hitung Prediksi</button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<script>
+    // Script ini nantinya akan mengirim data ke Backend (Flask/FastAPI)
+    document.getElementById('predictionForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Simulasi tampilan hasil
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+        resultDiv.style.backgroundColor = '#e7f3ff';
+        resultDiv.innerHTML = "Menghitung estimasi...";
+        
+        // Catatan: Bagian ini memerlukan backend untuk load .pkl kamu
+        console.log("Data dikirim:", data);
+    };
+</script>
+
+</body>
+</html>
